@@ -29,7 +29,7 @@ if len(sys.argv)==1:
      ./{} [options]
 
      -l <length> Specify the length             The length of the pattern, limit 20280
-     -q, --query Aa0A                           Query to Locate
+     -q, <query> specify the query, such as 0aA0 or 0x30416130                           Query to Locate
      '''.format(sys.argv[0])
 else:
     if sys.argv[1]=='-l':
