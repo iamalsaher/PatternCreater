@@ -24,15 +24,30 @@ def offset(pattern):
     if offset==-1:return "Pattern not found"
     else: return "Perfect match at offset "+str(offset+1)
 
+def multi(params):
+    params=params.split('-')
+    size=int(params[0])
+    lines=int(params[1])
+
+    patternlist=[]
+    pattern=create(size*lines)
+    for i in range(lines):
+        patternlist.append(pattern[size*i:size*(i+1)])
+    return patternlist
+
 if len(sys.argv)==1:
     print '''Usage:
      ./{} [options]
 
      -l <length> Specify the length             The length of the pattern, limit 20280
-     -q, <query> specify the query, such as 0aA0 or 0x30416130                           Query to Locate
+     -q <query> Aa0A                           Query to Locate
+     -m <multipleline>
      '''.format(sys.argv[0])
 else:
     if sys.argv[1]=='-l':
         print create(int(sys.argv[2]))
     if sys.argv[1]=='-q':
         print offset(str(sys.argv[2]))
+    if sys.argv[1]=='-m':
+        patList=multi(str(sys.argv[2]))
+        for i in patList:print i
